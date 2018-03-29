@@ -4,10 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-
+ has_one :current_cart, class_name: 'Cart'
   has_many :carts
-has_one :current_cart, class_name: 'Cart'
-
 
 
 
@@ -17,8 +15,5 @@ has_one :current_cart, class_name: 'Cart'
     cart.save
     cart
   end
-
-
-
 
 end

@@ -13,3 +13,8 @@ Item.all.each do |item|
   item.save
   counter += 1
 end
+
+User.create(email: "n@n", password: "password")
+
+Category.create(title: "Clothing, Industrial & Jewelry")
+Category.create(title: "Mediocre Copper Computer")

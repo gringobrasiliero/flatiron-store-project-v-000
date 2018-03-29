@@ -22,6 +22,4 @@ class Cart < ActiveRecord::Base
            line_item
      end
 
-
-
 end
