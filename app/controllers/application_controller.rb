@@ -6,6 +6,7 @@ include ApplicationHelper
 
 private
 
+
 def set_cart!
   @current_cart = current_user.current_cart
 end

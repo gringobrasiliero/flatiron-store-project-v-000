@@ -2,7 +2,7 @@ class CartsController < ApplicationController
 before_action :set_cart!
 
 def show
- @cart = Cart.find(params[:id])
+ @carts = Cart.find(params[:id])
 end
 
 def checkout
@@ -13,7 +13,7 @@ def checkout
 end
 @current_cart.destroy
  flash[:notice] = "Successfully checked out. Your cart is now empty."
-redirect_to cart_path(current_user)
+redirect_to cart_path(@current_cart)
 end
 
 

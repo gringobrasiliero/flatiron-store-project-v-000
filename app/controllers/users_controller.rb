@@ -5,7 +5,7 @@ def new
 end
 
 def create
-  @user = @user.new(user_params)
+  @user = @user.new(params[:id])
   if user.save
     session[:user_id] = @user.id
     redirect to user_path(@user)
@@ -19,5 +19,6 @@ end
 private
 
 def user_params
+end
 
 end
