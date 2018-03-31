@@ -7,9 +7,10 @@ module ApplicationHelper
     end
 
   def current_cart
-    Cart.find(current_user.current_cart_id)
+    if current_user
+      current_user.current_cart
  end
-
+end
 
 
 end

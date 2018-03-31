@@ -1,19 +1,15 @@
 class LineItemsController < ApplicationController
 before_action :set_cart!
 
-  def create
-
-    if @current_cart == nil
-      new_cart = Cart.create(:user_id => current_user.id)
-      @current_cart = new_cart
-      current_user.save
+def create
+        line_item = LineItem.create(:item_id => params[:item_id], :quantity => 1)
+        current_user.create_current_cart unless current_user.current_cart
+        if existing_item = current_user.current_cart.line_items.select { |line_item| line_item.item_id == params[:item_id ].to_i}.first
+            existing_item.update(:quantity =>  existing_item.quantity += 1)
+        else
+            current_user.current_cart.line_items << line_item
+        end
+        current_user.save
+        redirect_to cart_path(current_user.current_cart)
     end
-    line_item = @current_cart.add_item(params[:item_id])
-    if line_item.save
-      redirect_to cart_path(@current_cart), {notice: 'Item added to cart!'}
-    else
-      redirect_to store_path, {notice: 'Unable to add item'}
-    end
-  end
-
 end

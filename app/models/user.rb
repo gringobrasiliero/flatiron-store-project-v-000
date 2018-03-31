@@ -6,13 +6,12 @@ class User < ActiveRecord::Base
   has_many :carts
  belongs_to :current_cart, class_name: 'Cart', foreign_key: 'current_cart_id'
 
-
-
   def create_current_cart
     cart = Cart.create
     self.current_cart_id = cart.id
     cart.save
     cart
+
   end
 
 end

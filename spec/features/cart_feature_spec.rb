@@ -91,6 +91,7 @@ describe 'Feature Test: Cart', :type => :feature do
           click_button("Add to Cart")
         end
         @user.reload
+
         expect(@user.current_cart).to_not be_nil
       end
 
@@ -106,7 +107,7 @@ describe 'Feature Test: Cart', :type => :feature do
 
         @user.reload
         current_cart = @user.current_cart
-
+# binding.pry
         visit store_path
         within("form[action='#{line_items_path(item_id: second_item)}']") do
           click_button("Add to Cart")
