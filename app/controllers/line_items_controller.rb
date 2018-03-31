@@ -1,7 +1,9 @@
 class LineItemsController < ApplicationController
 before_action :set_cart!
 
-def create
+
+    def create
+
         line_item = LineItem.create(:item_id => params[:item_id], :quantity => 1)
         current_user.create_current_cart unless current_user.current_cart
         if existing_item = current_user.current_cart.line_items.select { |line_item| line_item.item_id == params[:item_id ].to_i}.first
